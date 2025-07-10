@@ -13,12 +13,12 @@ public class StorageImpl<K, V> implements Storage<K, V> {
     @Override
     public void put(K key, V value) {
 
-        if (maxIndex > 0) {
-            for (int i = 0; i < maxIndex; i++) {
-                if (keys[i] != null && keys[i].equals(key) || (keys[i] == null && key == null)) {
-                    values[i] = value;
-                    return;
-                }
+        for (int i = 0; i < maxIndex; i++) {
+            if (keys[i] != null && keys[i].equals(key) || (keys[i] == null && key == null)) {
+                values[i] = value;
+                System.out.println("Change value of key by index " + i);
+                System.out.println("size " + size());
+                return;
             }
         }
 
@@ -26,6 +26,8 @@ public class StorageImpl<K, V> implements Storage<K, V> {
         values[maxIndex] = value;
 
         maxIndex++;
+        System.out.println("value of maxIndex " + maxIndex);
+        System.out.println("size " + size());
 
     }
 
