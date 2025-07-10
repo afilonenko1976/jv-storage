@@ -8,12 +8,9 @@ If you are given the key-value pair, and the storage already contains this key, 
 Example:
 
 ```java
-StorageImpl<Integer, Box> storage = new StorageImpl<>();
+Storage<Integer, Box> storage = new StorageImpl<>(); 
 Box box = new Box();
-storage.
-
-put(22,box);
-
+storage.put(22, box); 
 Box value = storage.get(22); // returns the Box
 int size = storage.size(); // returns storage size
 ```
