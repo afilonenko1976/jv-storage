@@ -16,19 +16,19 @@ public class StorageImpl<K, V> implements Storage<K, V> {
         for (int i = 0; i < maxIndex; i++) {
             if (keys[i] != null && keys[i].equals(key) || (keys[i] == null && key == null)) {
                 values[i] = value;
-                System.out.println("Change value of key by index " + i);
-                System.out.println("size " + size());
                 return;
             }
+        }
+
+        if (maxIndex >= MAXSIZE) {
+            throw new RuntimeException("Array index " + maxIndex
+                      + " out of bounds " + maxIndex);
         }
 
         keys[maxIndex] = key;
         values[maxIndex] = value;
 
         maxIndex++;
-        System.out.println("value of maxIndex " + maxIndex);
-        System.out.println("size " + size());
-
     }
 
     @Override
@@ -39,7 +39,6 @@ public class StorageImpl<K, V> implements Storage<K, V> {
                 return (V) values[i];
             }
         }
-
         return null;
     }
 
