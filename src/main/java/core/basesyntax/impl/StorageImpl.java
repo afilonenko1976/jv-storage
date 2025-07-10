@@ -5,22 +5,15 @@ import core.basesyntax.Storage;
 public class StorageImpl<K, V> implements Storage<K, V> {
 
     private static final int MAXSIZE = 10;
-    private static int maxIndex = 0;
+    private int maxIndex = 0;
 
     private Object[] keys = new Object[MAXSIZE];
     private Object[] values = new Object[MAXSIZE];
 
-    {
-        maxIndex = 0;
-    }
-
-    //public StorageImpl() {
-    //}
-
     @Override
     public void put(K key, V value) {
 
-        if (maxIndex + 1 == MAXSIZE) {
+        if (maxIndex == MAXSIZE) {
             throw new ArrayIndexOutOfBoundsException("Index out of bounds!");
         }
 
@@ -36,9 +29,6 @@ public class StorageImpl<K, V> implements Storage<K, V> {
         keys[maxIndex] = key;
         values[maxIndex] = value;
 
-        if (maxIndex + 1 > MAXSIZE) {
-            return;
-        }
         maxIndex++;
 
     }
