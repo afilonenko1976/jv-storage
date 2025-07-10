@@ -22,14 +22,13 @@ public class StorageImpl<K, V> implements Storage<K, V> {
             }
         }
 
-        if (maxIndex == MAXSIZE) {
-            throw new ArrayIndexOutOfBoundsException("Index out of bounds!");
-        }
-
         keys[maxIndex] = key;
         values[maxIndex] = value;
 
         maxIndex++;
+        if (maxIndex == MAXSIZE) {
+            throw new ArrayIndexOutOfBoundsException("Index out of bounds!");
+        }
 
     }
 
