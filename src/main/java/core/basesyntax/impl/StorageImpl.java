@@ -13,10 +13,6 @@ public class StorageImpl<K, V> implements Storage<K, V> {
     @Override
     public void put(K key, V value) {
 
-        if (maxIndex == MAXSIZE) {
-            throw new ArrayIndexOutOfBoundsException("Index out of bounds!");
-        }
-
         if (maxIndex > 0) {
             for (int i = 0; i < maxIndex; i++) {
                 if (keys[i] != null && keys[i].equals(key) || (keys[i] == null && key == null)) {
@@ -24,6 +20,10 @@ public class StorageImpl<K, V> implements Storage<K, V> {
                     return;
                 }
             }
+        }
+
+        if (maxIndex == MAXSIZE) {
+            throw new ArrayIndexOutOfBoundsException("Index out of bounds!");
         }
 
         keys[maxIndex] = key;
